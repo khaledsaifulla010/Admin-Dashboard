@@ -1,5 +1,5 @@
 import { FaBoxes, FaBoxTissue, FaSignInAlt, FaUsers } from "react-icons/fa";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
   return (
