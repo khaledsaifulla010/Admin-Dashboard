@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const MyProducts = () => {
   const [myProducts, setMyProducts] = useState([]);
   useEffect(() => {
@@ -13,7 +15,11 @@ const MyProducts = () => {
       console.log(res.data);
       const updatedProducts = myProducts.filter((product) => product.id !== id);
       setMyProducts(updatedProducts);
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
+      localStorage.removeItem("myProducts", JSON.stringify(updatedProducts));
+      toast.success("Deleted Product Successfully!", {
+        position: "top-right",
+        theme: "colored",
+      });
     });
   };
 
