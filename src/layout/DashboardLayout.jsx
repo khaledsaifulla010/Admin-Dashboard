@@ -1,4 +1,4 @@
-import { FaBoxes, FaSignInAlt, FaUsers } from "react-icons/fa";
+import { FaBoxes, FaBoxTissue, FaSignInAlt, FaUsers } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
@@ -6,7 +6,7 @@ const DashboardLayout = () => {
     <div className="flex -ml-0.5 max-w-[1400px] mx-auto gap-4">
       {/* Dashboard Sidebar */}
       <div className="w-56 min-h-screen bg-slate-800  ">
-        <ul className="menu p-10">
+        <ul className="menu p-6">
           <li>
             <Link className="text-xl font-bold text-white" to={"/allUsers"}>
               <FaUsers />
@@ -17,6 +17,12 @@ const DashboardLayout = () => {
             <Link className="text-xl font-bold text-white" to={"/products"}>
               <FaBoxes />
               Products
+            </Link>
+          </li>
+          <li>
+            <Link className="text-xl font-bold text-white" to={"/myProducts"}>
+              <FaBoxTissue />
+              My Products
             </Link>
           </li>
           <li>

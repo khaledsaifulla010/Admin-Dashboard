@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
 import useAllProducts from "../../hooks/useAllProducts";
+import axios from "axios";
 
 const Products = () => {
   const [products] = useAllProducts();
+
+  const handleAddProduct = (id) => {
+    const selectedProduct = products.find((product) => product.id === id);
+
+    axios
+      .post(`https://api.restful-api.dev/objects`, selectedProduct)
+      .then((res) => {
+        const storedSpecificProduct =
+          JSON.parse(localStorage.getItem("myProducts")) || [];
+
+        const newStoredSpecificProduct = [...storedSpecificProduct, res.data];
+        localStorage.setItem(
+          "myProducts",
+          JSON.stringify(newStoredSpecificProduct)
+        );
+      });
+  };
+
   return (
     <div>
       <div className="lg:ml-36">
@@ -36,6 +55,7 @@ const Products = () => {
                           <th className="text-center py-3 px-4">
                             Product Details
                           </th>
+                          <th className="text-center py-3 px-4">Add Product</th>
                         </tr>
                       </thead>
                       <tbody className="text-gray-700">
@@ -71,6 +91,14 @@ const Products = () => {
                               >
                                 View
                               </Link>
+                            </td>
+                            <td>
+                              <button
+                                onClick={() => handleAddProduct(product.id)}
+                                className="px-2 border rounded-md font-bold text-lg text-pink-700 bg-pink-100 border-pink-300 ml-6"
+                              >
+                                Add
+                              </button>
                             </td>
                           </tr>
                         ))}
