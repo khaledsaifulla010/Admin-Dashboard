@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import useAllProducts from "../../hooks/useAllProducts";
 import axios from "axios";
 import { useState } from "react";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Products = () => {
   const [products] = useAllProducts();
   const [isSortedAsc, setIsSortedAsc] = useState(true);
@@ -21,6 +22,10 @@ const Products = () => {
           "myProducts",
           JSON.stringify(newStoredSpecificProduct)
         );
+        toast.success("Added Product Successfully!", {
+          position: "top-right",
+          theme: "colored",
+        });
       });
   };
 
