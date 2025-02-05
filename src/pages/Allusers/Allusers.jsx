@@ -3,7 +3,6 @@ import useAllUsers from "../../hooks/useAllUsers";
 
 const Allusers = () => {
   const [users] = useAllUsers();
-  console.log(users);
   return (
     <div className="lg:ml-36">
       <div>
@@ -30,7 +29,7 @@ const Allusers = () => {
                     </thead>
                     <tbody className="text-gray-700">
                       {users.map((user, index) => (
-                        <tr key={user._id} className="hover:bg-gray-100">
+                        <tr key={user.id} className="hover:bg-gray-100">
                           <td className="text-center py-3 px-4 font-bold text-green-600 text-base">
                             {index + 1}
                           </td>
