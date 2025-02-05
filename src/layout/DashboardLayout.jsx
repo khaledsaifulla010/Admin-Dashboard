@@ -28,7 +28,7 @@ const DashboardLayout = () => {
         </ul>
       </div>
       {/* Dashboard Content */}
-      <div className="flex-1">
+      <div className="w-[1150px]">
         <Outlet></Outlet>
       </div>
     </div>
