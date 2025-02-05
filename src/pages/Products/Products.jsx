@@ -3,8 +3,6 @@ import useAllProducts from "../../hooks/useAllProducts";
 
 const Products = () => {
   const [products] = useAllProducts();
-  console.log(products);
-
   return (
     <div>
       <div className="lg:ml-36">
@@ -68,7 +66,7 @@ const Products = () => {
                             </td>
                             <td>
                               <Link
-                                to={`/userDetails/userId/${product.id}`}
+                                to={`/productDetails/productId/${product.id}`}
                                 className="px-2 border rounded-md font-bold text-lg text-blue-700 bg-blue-100 border-blue-300 ml-6"
                               >
                                 View

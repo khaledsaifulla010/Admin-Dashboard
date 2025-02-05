@@ -4,6 +4,7 @@ import Allusers from "../pages/Allusers/Allusers";
 import Products from "../pages/Products/Products";
 import Login from "../pages/Login/Login";
 import UserDetails from "../pages/UserDetails/UserDetails";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +23,12 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
+      },
+      {
+        path: "/productDetails/productId/:id",
+        element: <ProductDetails />,
+        loader: ({ params }) =>
+          fetch(`https://api.restful-api.dev/objects/${params.id}`),
       },
       {
         path: "/login",
