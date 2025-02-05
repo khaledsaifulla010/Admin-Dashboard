@@ -9,6 +9,7 @@ const Login = () => {
   const handleLoginWithGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
+        console.log(result.user);
         toast.success("Sign in Successfully!", {
           position: "top-right",
           theme: "colored",

@@ -12,7 +12,6 @@ const MyProducts = () => {
 
   const handleDeleteProduct = (id) => {
     axios.delete(`https://api.restful-api.dev/objects/${id}`).then((res) => {
-      console.log(res.data);
       const updatedProducts = myProducts.filter((product) => product.id !== id);
       setMyProducts(updatedProducts);
       localStorage.removeItem("myProducts", JSON.stringify(updatedProducts));

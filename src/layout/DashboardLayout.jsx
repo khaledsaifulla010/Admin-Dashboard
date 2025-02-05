@@ -1,40 +1,68 @@
 import { FaBoxes, FaBoxTissue, FaSignInAlt, FaUsers } from "react-icons/fa";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
   return (
-    <div className="flex -ml-0.5 max-w-[1400px] mx-auto gap-4">
+    <div className="flex lg:-ml-0.5 lg:w-[1400px] w-[640px] mx-auto lg:gap-4">
       {/* Dashboard Sidebar */}
-      <div className="w-56 min-h-screen bg-slate-800  ">
-        <ul className="menu p-6">
+      <div className="lg:w-56 w-36  min-h-screen bg-slate-800  ">
+        <ul className="menu px-6 py-10">
           <li>
-            <Link className="text-xl font-bold text-white" to={"/allUsers"}>
+            <NavLink
+              to="/allUsers"
+              className={({ isActive }) =>
+                `lg:text-xl mt-6 font-bold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-all duration-300 ${
+                  isActive ? "bg-red-500" : "bg-transparent"
+                }`
+              }
+            >
               <FaUsers />
               All Users
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="text-xl font-bold text-white" to={"/products"}>
+            <NavLink
+              to={"/products"}
+              className={({ isActive }) =>
+                `lg:text-xl mt-6 font-bold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-all duration-300 ${
+                  isActive ? "bg-red-500" : "bg-transparent"
+                }`
+              }
+            >
               <FaBoxes />
               Products
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="text-xl font-bold text-white" to={"/myProducts"}>
+            <NavLink
+              to={"/myProducts"}
+              className={({ isActive }) =>
+                `lg:text-xl mt-6 font-bold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-all duration-300 ${
+                  isActive ? "bg-red-500" : "bg-transparent"
+                }`
+              }
+            >
               <FaBoxTissue />
               My Products
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="text-xl font-bold text-white" to={"/login"}>
+            <NavLink
+              to={"/login"}
+              className={({ isActive }) =>
+                `lg:text-xl mt-6 font-bold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-all duration-300 ${
+                  isActive ? "bg-red-500" : "bg-transparent"
+                }`
+              }
+            >
               <FaSignInAlt />
               Login
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
       {/* Dashboard Content */}
-      <div className="w-[1150px]">
+      <div className="lg:w-[1150px]">
         <Outlet></Outlet>
       </div>
     </div>
