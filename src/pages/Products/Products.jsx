@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import useAllProducts from "../../hooks/useAllProducts";
 import axios from "axios";
+import { useState } from "react";
 
 const Products = () => {
   const [products] = useAllProducts();
-
+  const [isSortedAsc, setIsSortedAsc] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const handleAddProduct = (id) => {
     const selectedProduct = products.find((product) => product.id === id);
 
@@ -22,6 +24,17 @@ const Products = () => {
       });
   };
 
+  const handleSortToggle = () => {
+    setIsSortedAsc(!isSortedAsc);
+  };
+
+  const filteredProducts = products.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  const sortedProducts = isSortedAsc
+    ? [...filteredProducts]
+    : [...filteredProducts].reverse();
+
   return (
     <div>
       <div className="lg:ml-36">
@@ -31,6 +44,22 @@ const Products = () => {
             <h1 className="text-5xl font-bold">
               Total Products : {products.length}{" "}
             </h1>
+          </div>
+          <div className="divider px-10"></div>
+          <div className="flex items-center justify-between px-10 mt-10">
+            <input
+              type="text"
+              placeholder="Search by Name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="px-4 py-2 border rounded-md text-lg"
+            />
+            <button
+              onClick={handleSortToggle}
+              className="px-4 py-2 text-white bg-blue-500 rounded-md font-bold"
+            >
+              Sort by {isSortedAsc ? "Descending" : "Ascending"}
+            </button>
           </div>
           <div>
             <div className="mt-12">
@@ -59,10 +88,12 @@ const Products = () => {
                         </tr>
                       </thead>
                       <tbody className="text-gray-700">
-                        {products.map((product, index) => (
+                        {sortedProducts.map((product, index) => (
                           <tr key={product.id} className="hover:bg-gray-100">
                             <td className="text-center py-3 px-4 font-bold text-green-600 text-base">
-                              {index + 1}
+                              {isSortedAsc
+                                ? index + 1
+                                : filteredProducts.length - index}
                             </td>
 
                             <td className="text-center py-3 px-4 text-base text-purple-700 font-bold">
