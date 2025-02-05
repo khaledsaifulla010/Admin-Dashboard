@@ -1,12 +1,25 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import auth from "../../firebase/firebase.config";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const googleProvider = new GoogleAuthProvider();
 
 const Login = () => {
   const handleLoginWithGoogle = () => {
-    signInWithPopup(auth, googleProvider);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        toast.success("Sign in Successfully!", {
+          position: "top-right",
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        toast.error("Something Went Wrong!", {
+          position: "top-right",
+          theme: "colored",
+        });
+      });
   };
 
   return (
