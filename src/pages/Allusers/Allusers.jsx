@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAllUsers from "../../hooks/useAllUsers";
 
 const Allusers = () => {
@@ -47,9 +48,12 @@ const Allusers = () => {
                             {user.company.name}
                           </td>
                           <td>
-                            <button className="px-2 border rounded-md font-bold text-lg text-blue-700 bg-blue-100 border-blue-300 ml-6">
+                            <Link
+                              to={`/userDetails/userId/${user.id}`}
+                              className="px-2 border rounded-md font-bold text-lg text-blue-700 bg-blue-100 border-blue-300 ml-6"
+                            >
                               View
-                            </button>
+                            </Link>
                           </td>
                         </tr>
                       ))}
