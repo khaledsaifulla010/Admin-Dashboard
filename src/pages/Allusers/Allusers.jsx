@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
 import useAllUsers from "../../hooks/useAllUsers";
+import { useState } from "react";
 
 const Allusers = () => {
   const [users] = useAllUsers();
+  const [isSortedAsc, setIsSortedAsc] = useState(true);
+  const sortedUsers = () => {
+    return isSortedAsc ? [...users] : [...users].reverse();
+  };
+  const handleSortToggle = () => {
+    setIsSortedAsc(!isSortedAsc);
+  };
   return (
     <div className="lg:ml-36">
       <div>
         <div className="flex items-center justify-around mt-12">
           <h1 className="text-5xl font-bold">All Users </h1>
           <h1 className="text-5xl font-bold">Total Users : {users.length} </h1>
+          <button
+            onClick={handleSortToggle}
+            className="px-4 py-2 text-white bg-blue-500 rounded-md font-bold"
+          >
+            Sort by {isSortedAsc ? "Descending" : "Ascending"}
+          </button>
         </div>
         <div>
           <div className="mt-12">
@@ -28,10 +42,10 @@ const Allusers = () => {
                       </tr>
                     </thead>
                     <tbody className="text-gray-700">
-                      {users.map((user, index) => (
+                      {sortedUsers().map((user, index) => (
                         <tr key={user.id} className="hover:bg-gray-100">
                           <td className="text-center py-3 px-4 font-bold text-green-600 text-base">
-                            {index + 1}
+                            {isSortedAsc ? index + 1 : users.length - index}
                           </td>
 
                           <td className="text-center py-3 px-4 text-base text-purple-700 font-bold">
