@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 const MyProducts = () => {
@@ -6,6 +7,15 @@ const MyProducts = () => {
     const storedProducts = JSON.parse(localStorage.getItem("myProducts")) || [];
     setMyProducts(storedProducts);
   }, []);
+
+  const handleDeleteProduct = (id) => {
+    axios.delete(`https://api.restful-api.dev/objects/${id}`).then((res) => {
+      console.log(res.data);
+      const updatedProducts = myProducts.filter((product) => product.id !== id);
+      setMyProducts(updatedProducts);
+      localStorage.setItem("products", JSON.stringify(updatedProducts));
+    });
+  };
 
   return (
     <div className="lg:ml-36">
@@ -47,24 +57,28 @@ const MyProducts = () => {
                           </td>
 
                           <td className="text-center py-3 px-4 text-cyan-700 font-bold text-base">
-                            {product.data?.year || "Not Available"}
+                            {product.data?.year || "None"}
                           </td>
 
                           <td className="text-center py-3 px-4 text-orange-700 font-bold text-base">
-                            ${product.data?.price || "Not Available"}
+                            {product.data?.price || "None"}
                           </td>
 
                           <td className="text-center py-3 px-4 text-cyan-700 font-bold text-base">
-                            {product.data?.["CPU model"] || "Not Available"}
+                            {product.data?.["CPU model"] || "None"}
                           </td>
 
                           <td className="text-center py-3 px-4 text-orange-700 font-bold text-base">
-                            {product.data?.["Hard disk size"] ||
-                              "Not Available"}
+                            {product.data?.["Hard disk size"] || "None"}
                           </td>
-                          <button className="text-center py-3 px-4 text-red-700 font-bold text-3xl ml-2">
-                            <RiDeleteBin2Fill />
-                          </button>
+                          <td>
+                            <button
+                              onClick={() => handleDeleteProduct(product.id)}
+                              className="text-center py-3 px-4 text-red-700 font-bold text-3xl ml-2"
+                            >
+                              <RiDeleteBin2Fill />
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
