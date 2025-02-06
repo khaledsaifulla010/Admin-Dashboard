@@ -48,6 +48,19 @@ const DashboardLayout = () => {
           </li>
           <li>
             <NavLink
+              to={"/myProducts"}
+              className={({ isActive }) =>
+                `lg:text-xl mt-6 font-bold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-all duration-300 ${
+                  isActive ? "bg-red-500" : "bg-transparent"
+                }`
+              }
+            >
+              <FaBoxTissue />
+              My Products
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to={"/login"}
               className={({ isActive }) =>
                 `lg:text-xl mt-6 font-bold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-all duration-300 ${

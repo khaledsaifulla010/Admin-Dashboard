@@ -10,13 +10,14 @@ const AddAProduct = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const hardDiskSize = `${Number(data["Hard disk size"])} GB`;
     const formattedData = {
       name: data.name,
       data: {
         year: data.year,
         price: data.price,
         "CPU model": data["CPU model"],
-        "Hard disk size": data["Hard disk size"],
+        "Hard disk size": hardDiskSize,
       },
     };
 

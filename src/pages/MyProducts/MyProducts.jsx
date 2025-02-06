@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const MyProducts = () => {
   const [myProducts, setMyProducts] = useState([]);
   useEffect(() => {
-    const storedProducts = JSON.parse(localStorage.getItem("myProducts")) || [];
+    const storedProducts = JSON.parse(localStorage.getItem("products")) || [];
     setMyProducts(storedProducts);
   }, []);
 
@@ -14,7 +14,7 @@ const MyProducts = () => {
     axios.delete(`https://api.restful-api.dev/objects/${id}`).then((res) => {
       const updatedProducts = myProducts.filter((product) => product.id !== id);
       setMyProducts(updatedProducts);
-      localStorage.removeItem("myProducts", JSON.stringify(updatedProducts));
+      localStorage.removeItem("products", JSON.stringify(updatedProducts));
       toast.success("Deleted Product Successfully!", {
         position: "top-right",
         theme: "colored",
