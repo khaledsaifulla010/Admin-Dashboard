@@ -1,4 +1,5 @@
 import { FaBoxes, FaBoxTissue, FaSignInAlt, FaUsers } from "react-icons/fa";
+import { ImBoxAdd } from "react-icons/im";
 import { NavLink, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
@@ -42,7 +43,7 @@ const DashboardLayout = () => {
                 }`
               }
             >
-              <FaBoxTissue />
+              <ImBoxAdd />
               Add Product
             </NavLink>
           </li>
