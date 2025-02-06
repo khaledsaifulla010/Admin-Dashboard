@@ -38,7 +38,7 @@ const AddAProduct = () => {
 
   return (
     <div>
-      <h2 className="text-5xl font-semibold mb-4 text-center mt-16">
+      <h2 className="text-5xl font-semibold mb-4 text-center mt-16 text-black">
         Add A Product
       </h2>
       <form
