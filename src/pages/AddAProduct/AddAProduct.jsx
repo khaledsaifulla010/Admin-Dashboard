@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 const AddAProduct = () => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -32,6 +33,7 @@ const AddAProduct = () => {
       position: "top-right",
       theme: "colored",
     });
+    reset();
   };
 
   return (
